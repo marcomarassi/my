@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note App</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+</head>
+<body>
+    <!-- Header con Autenticazione -->
+    <header>
+        <h1>📝 Le Mie Note</h1>
+        <div id="auth-section">
+            <div id="user-info" class="hidden">
+                <span id="user-email"></span>
+                <button id="logout-btn">Logout</button>
+            </div>
+            <div id="login-form">
+                <input type="email" id="email" placeholder="Email">
+                <input type="password" id="password" placeholder="Password">
+                <button id="login-btn">Login</button>
+                <button id="signup-btn">Registrati</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filtro Ricerca -->
+    <div id="filter-section" class="hidden">
+        <input type="text" id="search-filter" placeholder="Cerca nelle note...">
+    </div>
+
+    <!-- Form Creazione/Modifica Note -->
+    <div id="note-form-section" class="hidden">
+        <form id="note-form">
+            <input type="text" id="note-title" placeholder="Titolo della nota" required>
+            <textarea id="note-text" placeholder="Testo della nota" required></textarea>
+            
+            <div class="image-upload">
+                <label for="note-image">Carica Immagine:</label>
+                <input type="file" id="note-image" accept="image/*">
+                <div id="image-preview"></div>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" id="save-btn">Salva Nota</button>
+                <button type="button" id="cancel-btn">Annulla</button>
+            </div>
+            <input type="hidden" id="edit-id">
+        </form>
+    </div>
+
+    <!-- Lista Note -->
+    <main id="notes-list" class="hidden">
+        <button id="add-note-btn">+ Nuova Nota</button>
+        <div id="notes-container"></div>
+    </main>
+
+    <!-- Script -->
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
